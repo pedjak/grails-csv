@@ -36,7 +36,7 @@ class CsvGrailsPlugin {
     def title = "Grails CSV Plugin"
     def description = '''
         The Grails CSV Plugin allows you to easily parse and consume CSV data from a number of input sources.  It
-        supports complex parsing scenarios such as nested commas inside quotes (escaped tokens), multi-line quoted
+        supports complex parsing scenarios such as nested commas inside quotes, escaped tokens, multi-line quoted
         values and allows configuration of parsing options (separator char, escape char, text encoding, etc).  It is
         based on Glen Smith (et. al.)'s OpenCSV project (http://opencsv.sourceforge.net)
 
