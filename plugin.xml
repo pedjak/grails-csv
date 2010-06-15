@@ -67,5 +67,34 @@
     <resource>UrlMappings</resource>
   </resources>
   <dependencies />
-  <behavior />
+  <behavior>
+    <method name='eachLine' artefact='Codec' type='au.com.bytecode.opencsv.CSVReader'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+    <method name='eachCsvLine' artefact='Codec' type='java.io.InputStream'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+    <method name='toCsvReader' artefact='Codec' type='java.io.InputStream'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+    <method name='eachCsvLine' artefact='Codec' type='java.io.Reader'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+    <method name='toCsvReader' artefact='Codec' type='java.io.Reader'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+    <method name='eachCsvLine' artefact='Codec' type='java.lang.String'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+    <method name='toCsvReader' artefact='Codec' type='java.lang.String'>
+      <description />
+      <argument type='java.lang.Object' />
+    </method>
+  </behavior>
 </plugin>
