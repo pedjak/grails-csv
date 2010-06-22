@@ -18,18 +18,29 @@
 import org.grails.plugins.csv.CSVReaderUtils
 import au.com.bytecode.opencsv.CSVReader
 
+import org.grails.plugins.csv.controller.RenderCsvMethod
+
 class CsvGrailsPlugin {
     // the plugin version
-    def version = "0.1"
+    def version = "0.2-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp",
+            "grails-app/controllers/**/*"
     ]
 
+    def observe = [
+        "controllers"
+    ]
+    
+    def loadAfter = [
+        "controllers"
+    ]
+    
     // TODO Fill in these fields
     def author = "Les Hazlewood"
     def authorEmail = "les@katasoft.com"
@@ -103,6 +114,11 @@ class CsvGrailsPlugin {
         // TODO Implement runtime spring config (optional)
     }
 
+    def renderCsvMethod = { Map args, Closure definition ->
+        new RenderCsvMethod(delegate).call(args, definition)
+        false
+    }
+    
     def doWithDynamicMethods = { ctx ->
         CSVReader.metaClass.eachLine = { closure ->
             CSVReaderUtils.eachLine((CSVReader) delegate, closure)
@@ -135,6 +151,10 @@ class CsvGrailsPlugin {
         String.metaClass.toCsvReader = { settingsMap ->
             return CSVReaderUtils.toCsvReader((String)delegate, settingsMap)
         }
+        
+        application.controllerClasses.each {
+            it.clazz.metaClass.renderCsv = renderCsvMethod
+        }
     }
 
     def doWithApplicationContext = { applicationContext ->
@@ -142,9 +162,9 @@ class CsvGrailsPlugin {
     }
 
     def onChange = { event ->
-        // TODO Implement code that is executed when any artefact that this plugin is
-        // watching is modified and reloaded. The event contains: event.source,
-        // event.application, event.manager, event.ctx, and event.plugin.
+        if (application.isControllerClass(event.source)) {
+            event.source.metaClass.renderCsv = renderCsvMethod
+        }
     }
 
     def onConfigChange = { event ->
