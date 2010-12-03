@@ -56,7 +56,7 @@ class CSVReaderUtils {
     }
 
     public static CSVReader toCsvReader(File file, def settingsMap) {
-        return toCsvReader(new FileReader(file), settingsMap)
+        return toCsvReader(new FileInputStream(file), settingsMap)
     }
 
     public static CSVReader toCsvReader(InputStream is, def settingsMap) {
