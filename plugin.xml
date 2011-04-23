@@ -1,4 +1,4 @@
-<plugin name='csv' version='0.2-SNAPSHOT' grailsVersion='1.1 &gt; *'>
+<plugin name='csv' version='0.2' grailsVersion='1.2 &gt; *'>
   <author>Les Hazlewood</author>
   <authorEmail>les@katasoft.com</authorEmail>
   <title>Grails CSV Plugin</title>
@@ -69,31 +69,31 @@
   </resources>
   <dependencies />
   <behavior>
-    <method name='eachLine' artefact='Domain' type='au.com.bytecode.opencsv.CSVReader'>
+    <method name='eachLine' artefact='Controller' type='au.com.bytecode.opencsv.CSVReader'>
       <description />
       <argument type='java.lang.Object' />
     </method>
-    <method name='eachCsvLine' artefact='Domain' type='java.io.InputStream'>
+    <method name='eachCsvLine' artefact='Controller' type='java.io.InputStream'>
       <description />
       <argument type='java.lang.Object' />
     </method>
-    <method name='toCsvReader' artefact='Domain' type='java.io.InputStream'>
+    <method name='toCsvReader' artefact='Controller' type='java.io.InputStream'>
       <description />
       <argument type='java.lang.Object' />
     </method>
-    <method name='eachCsvLine' artefact='Domain' type='java.io.Reader'>
+    <method name='eachCsvLine' artefact='Controller' type='java.io.Reader'>
       <description />
       <argument type='java.lang.Object' />
     </method>
-    <method name='toCsvReader' artefact='Domain' type='java.io.Reader'>
+    <method name='toCsvReader' artefact='Controller' type='java.io.Reader'>
       <description />
       <argument type='java.lang.Object' />
     </method>
-    <method name='eachCsvLine' artefact='Domain' type='java.lang.String'>
+    <method name='eachCsvLine' artefact='Controller' type='java.lang.String'>
       <description />
       <argument type='java.lang.Object' />
     </method>
-    <method name='toCsvReader' artefact='Domain' type='java.lang.String'>
+    <method name='toCsvReader' artefact='Controller' type='java.lang.String'>
       <description />
       <argument type='java.lang.Object' />
     </method>
