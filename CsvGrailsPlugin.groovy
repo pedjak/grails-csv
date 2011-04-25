@@ -16,13 +16,14 @@
  */
 
 import org.grails.plugins.csv.CSVReaderUtils
+import org.grails.plugins.csv.CSVMapReader
 import au.com.bytecode.opencsv.CSVReader
 
 import org.grails.plugins.csv.controller.RenderCsvMethod
 
 class CsvGrailsPlugin {
     // the plugin version
-    def version = "0.2"
+    def version = "0.3"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.2 > *"
     // the other plugins this plugin depends on
@@ -120,6 +121,7 @@ class CsvGrailsPlugin {
     }
     
     def doWithDynamicMethods = { ctx ->
+		//TODO this should really all be in a utility method so it can easily be called for unit testing
         CSVReader.metaClass.eachLine = { closure ->
             CSVReaderUtils.eachLine((CSVReader) delegate, closure)
         }
@@ -129,6 +131,9 @@ class CsvGrailsPlugin {
         }
         File.metaClass.toCsvReader = { settingsMap ->
             return CSVReaderUtils.toCsvReader((File)delegate, settingsMap)
+        }
+		File.metaClass.toCsvMapReader = { settingsMap ->
+			return new CSVMapReader(new FileReader(delegate),settingsMap)
         }
 
         InputStream.metaClass.eachCsvLine = { closure ->
@@ -144,12 +149,18 @@ class CsvGrailsPlugin {
         Reader.metaClass.toCsvReader = { settingsMap ->
             return CSVReaderUtils.toCsvReader((Reader)delegate, settingsMap)
         }
+		Reader.metaClass.toCsvMapReader = { settingsMap ->
+			return new CSVMapReader(delegate,settingsMap)
+        }
 
         String.metaClass.eachCsvLine = { closure ->
             CSVReaderUtils.eachLine((String) delegate, closure)
         }
         String.metaClass.toCsvReader = { settingsMap ->
             return CSVReaderUtils.toCsvReader((String)delegate, settingsMap)
+        }
+		String.metaClass.toCsvMapReader = { settingsMap ->
+			return new CSVMapReader(new StringReader(delegate),settingsMap)
         }
         
         application.controllerClasses.each {

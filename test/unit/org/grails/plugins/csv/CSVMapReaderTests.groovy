@@ -63,6 +63,20 @@ class CSVMapReaderTests extends GrailsUnitTestCase {
 			}
 		}
 	}
+	
+	//test iterator
+	def testForLoopIterator(){
+		def csv = new CSVMapReader(new StringReader(testCsvMulti) )
+		int i=0
+		for(map in csv){
+			if(0==i){
+				assertEquals([col1:'val1',col2:'val2',col3:'val3'], map)
+			}else if(1==i){
+				assertEquals([col1:'10',col2:'20',col3:'30,3'], map)
+			}
+			i++
+		}
+	}
 
 def testCsv1row = '''\
 col1,col2,col3
@@ -73,6 +87,7 @@ def testCsvMulti = '''\
 col1,col2,col3
 "val1",val2,"val3"
 "10",20,"30,3"
+
 '''
 
 def csvDelimPipe = '''\
