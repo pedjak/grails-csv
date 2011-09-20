@@ -1,4 +1,4 @@
-<plugin name='csv' version='0.3' grailsVersion='1.2 &gt; *'>
+<plugin name='csv' version='0.3-PK' grailsVersion='1.2 &gt; *'>
   <author>Les Hazlewood</author>
   <authorEmail>les@katasoft.com</authorEmail>
   <title>Grails CSV Plugin</title>
@@ -68,47 +68,5 @@
     <resource>CsvTestController</resource>
   </resources>
   <dependencies />
-  <behavior>
-    <method name='eachLine' artefact='Controller' type='au.com.bytecode.opencsv.CSVReader'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='eachCsvLine' artefact='Controller' type='java.io.InputStream'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='toCsvReader' artefact='Controller' type='java.io.InputStream'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='eachCsvLine' artefact='Controller' type='java.io.Reader'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='toCsvReader' artefact='Controller' type='java.io.Reader'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='toCsvMapReader' artefact='Controller' type='java.io.Reader'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='eachCsvLine' artefact='Controller' type='java.lang.String'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='toCsvReader' artefact='Controller' type='java.lang.String'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='toCsvMapReader' artefact='Controller' type='java.lang.String'>
-      <description />
-      <argument type='java.lang.Object' />
-    </method>
-    <method name='renderCsv' artefact='Controller' type='CsvTestController'>
-      <description />
-      <argument type='java.util.Map' />
-      <argument type='groovy.lang.Closure' />
-    </method>
-  </behavior>
+  <behavior />
 </plugin>
